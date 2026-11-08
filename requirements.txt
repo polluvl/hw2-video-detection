@@ -1,0 +1,13 @@
+# torch / torchvision: use the CUDA build preinstalled on Kaggle/Colab
+# (code smoke-tested with torch 2.15.0, torchvision 0.29.2)
+ultralytics==8.4.192
+pycocotools>=2.0.8
+ensemble-boxes==1.0.10
+scikit-learn
+pandas
+matplotlib
+opencv-python-headless
+pyyaml
+scipy
+nbformat
+tabulate

@@ -1,0 +1,13 @@
+outputs/
+runs/
+data/
+data_fake/
+__pycache__/
+*.pt
+*.npz
+.ipynb_checkpoints/
+*.zip
+kaggle.json
+.env
+wandb/
+submission*.csv
