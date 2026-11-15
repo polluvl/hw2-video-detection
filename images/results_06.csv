@@ -1,0 +1,16 @@
+experiment,mAP,AP50,AP75,AP_small,AP_medium,AP_large,AR,family,ms_per_img,train_min,config
+yolo_640,0.1455,0.2807,0.1319,0.0731,0.1187,0.2965,0.25,one-stage anchor-free,10.5,12.0,{'imgsz': 640}
+yolo_1024,0.1821,0.3594,0.1626,0.1034,0.1782,0.3095,0.2989,one-stage anchor-free,23.5,25.2,{'imgsz': 1024}
+yolo_1024_p2,0.1816,0.3657,0.1596,0.1043,0.1669,0.3398,0.327,one-stage anchor-free,36.6,45.1,{'imgsz': 1024}
+yolo_1024_box,0.1895,0.3625,0.1704,0.108,0.1752,0.3263,0.3155,one-stage anchor-free,23.7,25.2,"{'imgsz': 1024, 'box': 10.0}"
+rtdetr_640,0.0787,0.151,0.0769,0.0345,0.0592,0.1903,0.306,query-based,47.0,43.1,{'max_det': 300}
+rtdetr_640_q500,0.1587,0.2998,0.1523,0.0612,0.13,0.3171,0.3859,query-based,50.7,47.6,{'max_det': 500}
+rtdetr_640_lr,0.1541,0.2829,0.1513,0.06,0.1328,0.3063,0.3736,query-based,47.3,42.9,"{'lr0': 0.0002, 'warmup_epochs': 5, 'max_det': 300}"
+pipe_data_step3,0.2037,0.379,0.1918,0.1011,0.1717,0.3533,0.3135,pipeline (data/model),23.0,,"yolov8s.pt, train_step=3, {}"
+pipe_model_m,0.2009,0.3872,0.1846,0.1031,0.1817,0.374,0.3786,pipeline (data/model),52.1,,"yolov8m.pt, train_step=10, {}"
+pipe_base,0.2015,0.3777,0.1878,0.1,0.1716,0.3462,0.3161,pipeline (inference),22.0,,"pipe_data_step3, imgsz=1024"
+pipe_imgsz_up,0.2115,0.3988,0.197,0.102,0.1853,0.3625,0.3414,pipeline (inference),36.0,,test imgsz=1280
+pipe_tta,0.2019,0.3874,0.185,0.1015,0.1799,0.3434,0.3459,pipeline (inference),47.2,,Ultralytics TTA (flip + scales)
+pipe_tiles,0.223,0.4291,0.203,0.1161,0.2038,0.3712,0.3686,pipeline (inference),146.5,,"full image + 2x2 tiles, NMS merge"
+pipe_temporal,0.2348,0.4502,0.2142,0.1201,0.2095,0.4004,0.3686,pipeline (inference),0.0,,"pipe_tiles + temporal {'iou_thr': 0.2, 'weight': 0.7, 'causal': False}"
+pipe_wbf_2models,0.2128,0.3995,0.1948,0.1083,0.1831,0.3633,0.3506,pipeline (inference),0.0,,"WBF(pipe_data_step3, yolo_1024_box)"
